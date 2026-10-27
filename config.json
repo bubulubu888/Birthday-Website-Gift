@@ -1,23 +1,23 @@
 {
-  "name": "Chrissy",
+  "name": "Dudu",
   "avatar_url": "https://avatars.githubusercontent.com/u/68145571?v=4",
-  "badge": "🎉 B-Day Boss!",
+  "badge": "Happy Birthday Dudu🩷⭐️!",
   "subtitle": "You unlocked it. 🎉 Celebrating another incredible year of your journey — wishing you a day as brilliant as the code you write and as exciting as a flawless Anno city.",
   "interests": [
-    { "icon": "terminal",       "label": "OSS Developer"    },
-    { "icon": "sports_esports", "label": "Anno & Fortnite"  },
-    { "icon": "location_on",    "label": "Austria 🇦🇹"      }
+    { "icon": "science",       "label": "Fragrance Collector"    },
+    { "icon": "music_note", "label": "Drake Fan"  },
+    { "icon": "sports_esports",    "label": "Chess Master"      }
   ],
   "stats": [
-    { "value": "∞",  "label": "Lines of Code", "color": "primary"   },
-    { "value": "1",  "label": "Chrissy",        "color": "secondary" },
-    { "value": "🏆", "label": "Legend Status",  "color": "tertiary"  }
+    { "value": "∞",  "label": "Reasons I love you", "color": "pink"   },
+    { "value": "1",  "label": "Dudu",        "color": "purple" },
+    { "value": "♟️", "label": "Chess King",  "color": "gold"  }
   ],
-  "secret_message": "🎁 Secret unlocked! You already beat the game AND found this. Chrissy is unstoppable. Have the best birthday ever! 🎉",
-  "footer": "Built with love for Tomato6966",
+  "secret_message": "🎁 Suprise Dudu! I hope you know how loved you are. I know you get scared but your soul is the youngest over ever known. That skin too!!! Youre gonna age so nice. Im so glad you were born my baby. Happy birthday my lover🩷⭐️",
+  "footer": "I love you forever, Dudu🩷",
 
   "toast_messages": [
-    "🎂 Cheers, {name}!",
+    "🎂 Cheers, {Dudu}!",
     "🥂 Double cheers!",
     "🎉 You're on a roll!",
     "💜 Okay, we get it — you love the button.",
@@ -47,7 +47,7 @@
     "📋 TODO: have an amazing day. Status: ✅ Done.",
     "🎤 Drop the code and celebrate!!",
     "💻 Ctrl+Z won't undo how awesome you are.",
-    "⚡ {name}.speed = Infinity",
+    "⚡ {Dudu}.speed = Infinity",
     "🌊 Riding the Anno trade routes on your birthday.",
     "🏆 TypeScript would give this button a perfect type.",
     "🎲 RNG seed: best_birthday_ever",
@@ -69,24 +69,24 @@
   ],
 
   "profile_messages": [
-    "👋 Hey, that's {name}!",
+    "👋 Hey, that's {Dudu}!",
     "😄 Hehe, stop poking me!",
     "🙈 Okay okay, I see you.",
-    "🎩 Did you know {name} is awesome?",
+    "🎩 Did you know {Dudu} is awesome?",
     "💻 Currently busy building cool OSS stuff!",
     "🎮 Or maybe in a Fortnite game right now...",
     "🏙️ Building the perfect Anno trade route.",
     "🇦🇹 Grüß Gott from Austria!",
     "🌟 One of the rare actually cool devs.",
-    "🥳 HAPPY BIRTHDAY {name}!!!",
+    "🥳 HAPPY BIRTHDAY {DUDU}!!!",
     "💜 Okay you can stop now. Or don't. I'm a picture."
   ],
 
   "game": {
     "clicks_needed": 30,
-    "title": "Psst.\n{name}. 👀",
+    "title": "Psst.\n{Dudu}. 👀",
     "subtitle": "Someone left something for you.\nBut you gotta earn it first. 😈",
-    "win_title": "YOU DID IT! 🎉",
+    "win_title": "You unlocked my heart🩷",
     "win_subtitle": "Unlocking your surprise...",
     "milestones": {
       "1":  "👀 Curious...",
