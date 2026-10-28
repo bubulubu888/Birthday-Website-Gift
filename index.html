@@ -2,253 +2,77 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#100d1b">
 <title>Dudu's Birthday Quest 💗</title>
-
 <style>
-:root {
-  --bg: #100d1b;
-  --panel: #1b162a;
-  --pink: #ff78c8;
-  --purple: #a78bfa;
-  --white: #fff5fb;
-  --muted: #b9adc9;
-  --green: #a8f0c6;
-  --gold: #ffe39a;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  background:
-    radial-gradient(ellipse at top, #332044 0%, transparent 55%),
-    var(--bg);
-  color: var(--white);
-  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-  line-height: 1.65;
-}
-button, input { font: inherit; }
-button {
-  cursor: pointer;
-  border: 1px solid #73578f;
-  color: var(--white);
-  background: #2a203d;
-  padding: 12px 15px;
-  border-radius: 12px;
-  transition: .2s;
-}
-button:hover { border-color: var(--pink); transform: translateY(-2px); }
-button:focus-visible { outline: 2px solid var(--gold); }
-button:disabled { opacity: .45; cursor: not-allowed; }
-a { color: var(--pink); }
-header {
-  text-align: center;
-  padding: 24px 16px 12px;
-}
-.eyebrow {
-  color: var(--pink);
-  letter-spacing: 3px;
-  font-size: 11px;
-}
-h1 {
-  font-size: clamp(27px, 7vw, 45px);
-  line-height: 1.2;
-  margin: 12px 0;
-  text-shadow: 0 0 25px #ff78c866;
-}
-h2 { color: var(--pink); font-size: 19px; }
-h3 { color: var(--gold); }
-p { overflow-wrap: anywhere; }
-.sub { color: var(--muted); font-size: 13px; }
-.container { width: min(720px, 92%); margin: auto; }
-.panel {
-  background: #1b162aeF;
-  border: 1px solid #57416d;
-  border-radius: 18px;
-  padding: 20px;
-  margin: 17px 0;
-  box-shadow: 0 10px 35px #0003;
-}
-.hero {
-  text-align: center;
-  padding: 26px 18px;
-  border-color: #a76caa;
-}
-.bears {
-  display: flex;
-  justify-content: center;
-  align-items: end;
-  gap: 20px;
-  margin: 15px 0;
-}
-.bear {
-  font-size: 66px;
-  line-height: 1.3;
-  filter: drop-shadow(0 0 12px #ff78c833);
-  animation: float 3s ease-in-out infinite;
-}
-.bear:nth-child(2) { animation-delay: -.9s; }
-.bear-label { font-size: 12px; color: var(--muted); }
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-7px); }
-}
-.primary {
-  background: linear-gradient(100deg, #b95fa5, #7258b5);
-  border-color: #e8a2dd;
-  font-weight: bold;
-}
-.row { display: flex; gap: 9px; flex-wrap: wrap; }
-.row > button { flex: 1; min-width: 125px; }
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 10px;
-}
-.card {
-  border: 1px solid #514064;
-  border-radius: 13px;
-  padding: 13px;
-  background: #241d35;
-}
-.card .icon { font-size: 28px; }
-.card p { font-size: 12px; color: var(--muted); }
-.badge {
-  display: inline-block;
-  padding: 4px 8px;
-  background: #3a2947;
-  color: var(--gold);
-  border-radius: 7px;
-  font-size: 10px;
-}
-.progress {
-  background: #352a43;
-  height: 10px;
-  border-radius: 20px;
-  overflow: hidden;
-  margin: 10px 0;
-}
-#progressFill {
-  width: 0%;
-  height: 100%;
-  background: linear-gradient(90deg, var(--pink), var(--purple));
-  transition: width .3s;
-}
-#questText { color: var(--white); }
-#choices { display: grid; gap: 9px; }
-.choice { text-align: left; }
-#feedback { color: var(--green); min-height: 25px; }
-.hidden { display: none !important; }
-.secret {
-  background: #30203b;
-  border: 1px dashed var(--pink);
-  padding: 15px;
-  border-radius: 12px;
-}
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0,1fr));
-  gap: 10px;
-}
-.photo {
-  min-height: 115px;
-  border: 1px dashed #8b6ba7;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  overflow: hidden;
-  background: #21192e;
-  color: var(--muted);
-  padding: 8px;
-  font-size: 12px;
-}
-.photo img { width: 100%; height: 160px; object-fit: cover; }
-.note {
-  border-left: 3px solid var(--pink);
-  padding: 10px 14px;
-  background: #241b32;
-  margin: 12px 0;
-}
-input[type="file"] {
-  width: 100%;
-  margin: 12px 0;
-  font-size: 12px;
-}
-footer {
-  text-align: center;
-  color: var(--muted);
-  font-size: 11px;
-  padding: 25px 10px 40px;
-}
-#toast {
-  position: fixed;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #332343;
-  border: 1px solid var(--pink);
-  border-radius: 12px;
-  padding: 12px 17px;
-  width: max-content;
-  max-width: 90%;
-  z-index: 10;
-  box-shadow: 0 5px 30px #0009;
-}
-.letter {
-  white-space: pre-line;
-  font-family: Georgia, serif;
-  font-size: 17px;
-  line-height: 1.9;
-}
-.heart {
-  position: fixed;
-  pointer-events: none;
-  z-index: 20;
-  animation: rise 1.5s ease-out forwards;
-}
-@keyframes rise {
-  from { opacity: 1; transform: translateY(0) scale(1); }
-  to { opacity: 0; transform: translateY(-150px) scale(1.8); }
-}
-body.epic {
-  background:
-    radial-gradient(ellipse at top, #39234e 0%, transparent 60%),
-    #0b101d;
-}
-body.romantic {
-  background:
-    radial-gradient(ellipse at top, #49223f 0%, transparent 60%),
-    #100d1b;
-}
-@media(max-width:430px) {
-  .panel { padding: 15px; }
-  .bear { font-size: 56px; }
-  .grid { gap: 8px; }
-}
+:root{--bg:#100d1b;--panel:#1b162a;--pink:#ff78c8;--purple:#a78bfa;--white:#fff5fb;--muted:#c0b3d0;--green:#a8f0c6;--gold:#ffe39a}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;color:var(--white);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;line-height:1.65;background:radial-gradient(ellipse at top,#332044 0%,transparent 55%),var(--bg);transition:background .5s}
+body.epic{background:radial-gradient(ellipse at top,#183b5a 0%,transparent 60%),#080d19}
+body.romantic{background:radial-gradient(ellipse at top,#49223f 0%,transparent 60%),#100d1b}
+button,input{font:inherit}
+button{cursor:pointer;border:1px solid #73578f;color:var(--white);background:#2a203d;padding:12px 14px;border-radius:12px;transition:.2s}
+button:hover{border-color:var(--pink);transform:translateY(-2px)}
+button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+button:disabled{opacity:.45;cursor:not-allowed;transform:none}
+header{text-align:center;padding:25px 16px 12px}
+.eyebrow{color:var(--pink);letter-spacing:3px;font-size:11px}
+h1{font-size:clamp(27px,7vw,45px);line-height:1.2;margin:12px 0;text-shadow:0 0 25px #ff78c866}
+h2{color:var(--pink);font-size:19px;margin-top:0}
+h3{color:var(--gold)}
+p{overflow-wrap:anywhere}
+.container{width:min(720px,92%);margin:auto}
+.panel{background:#1b162aee;border:1px solid #57416d;border-radius:18px;padding:20px;margin:17px 0;box-shadow:0 10px 35px #0003}
+.hero{text-align:center;padding:25px 17px;border-color:#a76caa}
+.bears{display:flex;justify-content:center;align-items:end;gap:25px;margin:15px 0}
+.bear{font-size:65px;line-height:1.25;filter:drop-shadow(0 0 12px #ff78c833);animation:float 3s ease-in-out infinite}
+.bear:nth-child(2){animation-delay:-.9s}
+.bear-label{font-size:12px;color:var(--muted)}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.sub{color:var(--muted);font-size:12px}
+.primary{background:linear-gradient(100deg,#b95fa5,#7258b5);border-color:#e8a2dd;font-weight:bold}
+.row{display:flex;gap:9px;flex-wrap:wrap}
+.row>button{flex:1;min-width:125px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.card{border:1px solid #514064;border-radius:13px;padding:13px;background:#241d35}
+.card .icon{font-size:28px}
+.card p{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;padding:4px 8px;background:#3a2947;color:var(--gold);border-radius:7px;font-size:10px}
+.progress{background:#352a43;height:10px;border-radius:20px;overflow:hidden;margin:10px 0}
+#progressFill{width:0%;height:100%;background:linear-gradient(90deg,var(--pink),var(--purple));transition:width .3s}
+#choices{display:grid;gap:9px}
+.choice{text-align:left}
+#feedback{color:var(--green);min-height:25px}
+.hidden{display:none!important}
+.secret{background:#30203b;border:1px dashed var(--pink);padding:15px;border-radius:12px;margin-top:12px}
+.photo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.photo{min-height:120px;border:1px dashed #8b6ba7;border-radius:12px;display:grid;place-items:center;text-align:center;overflow:hidden;background:#21192e;color:var(--muted);padding:8px;font-size:12px}
+.photo img{width:100%;height:160px;object-fit:cover}
+input[type=file]{width:100%;margin:12px 0;font-size:12px}
+.note{border-left:3px solid var(--pink);padding:10px 14px;background:#241b32;margin:12px 0}
+.letter{white-space:pre-line;font-family:Georgia,serif;font-size:17px;line-height:1.9}
+footer{text-align:center;color:var(--muted);font-size:11px;padding:25px 10px 40px}
+#toast{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);background:#332343;border:1px solid var(--pink);border-radius:12px;padding:12px 17px;width:max-content;max-width:90%;z-index:10;box-shadow:0 5px 30px #0009;text-align:center}
+.heart{position:fixed;pointer-events:none;z-index:20;animation:rise 1.5s ease-out forwards}
+@keyframes rise{from{opacity:1;transform:translateY(0) scale(1)}to{opacity:0;transform:translateY(-150px) scale(1.8)}}
+footer span{color:var(--pink)}
+@media(max-width:430px){.panel{padding:15px}.bear{font-size:56px}.grid{gap:8px}}
 </style>
 </head>
-
 <body class="romantic">
 <header>
   <div class="eyebrow">✦ PLAYER ONE: DUDU ✦</div>
   <h1>DUDU'S BIRTHDAY QUEST</h1>
   <div class="sub">A very serious game about a very unserious amount of love.</div>
 </header>
-
 <main class="container">
-
 <section class="panel hero">
   <span class="badge">SPECIAL EDITION · BUBU × DUDU</span>
   <div class="bears">
-    <div>
-      <div class="bear">🐻‍❄️</div>
-      <div class="bear-label">BUBU · PLAYER 2</div>
-    </div>
-    <div>
-      <div class="bear">🐻</div>
-      <div class="bear-label">DUDU · PLAYER 1</div>
-    </div>
+    <div><div class="bear">🐻‍❄️</div><div class="bear-label">BUBU · PLAYER 2</div></div>
+    <div><div class="bear">🐻</div><div class="bear-label">DUDU · PLAYER 1</div></div>
   </div>
   <h2>Happy Birthday, Dudu! 💗</h2>
   <p>You've unlocked a new level of life. Unfortunately for you, Bubu is still your favorite side quest.</p>
@@ -268,7 +92,7 @@ body.romantic {
 
 <section class="panel" id="quest">
   <h2>🗺️ THE LOVE QUEST</h2>
-  <p class="sub">Complete the quests to unlock a secret ending.</p>
+  <p class="sub">Choose your answers and complete all five quests to unlock the final reward.</p>
   <div class="progress"><div id="progressFill"></div></div>
   <p id="progressText">Quests completed: 0 / 5</p>
   <h3 id="questTitle">Quest 1: The Important Question</h3>
@@ -284,14 +108,14 @@ body.romantic {
 
 <section class="panel">
   <h2>🎵 CHOOSE YOUR SOUNDTRACK</h2>
-  <p class="sub">Tap a mode to activate an original synthesized sound. Your phone may ask you to allow sound.</p>
+  <p class="sub">Tap a mode to start original synthesized sounds. Sound starts only after you tap, because phones are picky like that.</p>
   <div class="row">
     <button onclick="setMusic('romantic')">💗 Romantic Mode</button>
     <button onclick="setMusic('epic')">⚡ Epic Mode</button>
     <button onclick="stopMusic()">🔇 Quiet Mode</button>
   </div>
   <p id="musicStatus" class="sub">Soundtrack: waiting for player...</p>
-  <p class="sub">Epic Mode is our own cinematic-inspired sound, not the actual Avengers theme.</p>
+  <p class="sub">Epic Mode has an original cinematic-inspired sound, not the actual Avengers theme.</p>
 </section>
 
 <section class="panel">
@@ -303,7 +127,7 @@ body.romantic {
     <p>Special effect: +100 aura, +50 compliments, and a mysterious ability to smell good from another dimension.</p>
     <button onclick="toast('BUBU HAS CONFIRMED: it’s that good shi not that bullshi 😭')">INSPECT ITEM</button>
   </div>
-  <div class="note">“it’s that good shi not that bullshi” — Dudu, probably explaining the difference between legendary loot and regular loot.</div>
+  <div class="note">“it’s that good shi not that bullshi” — the legendary Dudu quote. 😭</div>
 </section>
 
 <section class="panel">
@@ -319,7 +143,7 @@ body.romantic {
 
 <section class="panel">
   <h2>📸 OUR LITTLE MEMORY GALLERY</h2>
-  <p class="sub">Choose photos from your phone for a preview. These previews stay on this device/browser; to make the photos appear for Dudu too, we'll need to add them to the website files.</p>
+  <p class="sub">Choose photos for a preview. These previews stay in this browser; to make them appear for Dudu too, we'll add the photos to the website files afterward.</p>
   <input id="photoInput" type="file" accept="image/*" multiple>
   <div class="photo-grid" id="photoGrid">
     <div class="photo">📷<br>Favorite memory</div>
@@ -331,7 +155,7 @@ body.romantic {
 
 <section class="panel">
   <h2>🔐 SECRET MESSAGE TERMINAL</h2>
-  <p>Somewhere in this game are hidden hearts. Tap around and see if you can find them. 👀</p>
+  <p>Tap each mystery button to uncover little messages. 👀</p>
   <div class="grid">
     <button onclick="findSecret(0)">🕹️ Mystery button</button>
     <button onclick="findSecret(1)">🐻 Bear button</button>
@@ -353,4 +177,138 @@ body.romantic {
 </section>
 
 <footer>
-  MADE WITH LOVE BY BUBU · POWERED BY CUDDLES & QUESTION
+  MADE WITH LOVE BY BUBU · POWERED BY CUDDLES & QUESTIONABLE GAMING SKILLS<br>
+  <span id="achievementCount">Achievements: 0 / 5</span>
+</footer>
+</main>
+<div id="toast" class="hidden" role="status"></div>
+
+<script>
+const questions = [
+ {title:"Quest 1: The Important Question",text:"A wild Bubu appears! What is Dudu's most important mission today?",choices:["A. Become the world's most powerful gamer","B. Get spoiled by Bubu","C. Pretend he doesn't want attention"],response:["A noble dream. But Bubu is the actual final boss. 😭","CORRECT ANSWER! +100 boyfriend points. 💗","Nice try, Dudu. We all know you like attention from your Bubu. 🤎"]},
+ {title:"Quest 2: Legendary Aura",text:"Dudu equips his favorite fragrance. What happens next?",choices:["A. The room gains +100 aura","B. Everyone asks what smells so good","C. Both. Obviously."],response:["The aura stat increases dramatically. ✨","A predictable side effect of legendary loot. 😌","CORRECT! Club de Nuit Sillage has entered the chat. 🧴"]},
+ {title:"Quest 3: The Avengers Test",text:"The universe is in danger. What is the most powerful force?",choices:["A. The Infinity Stones","B. The Avengers theme song","C. Bubu saying 'I love you'"],response:["Powerful, but we're not done yet.","The theme song alone adds +50 confidence. ⚡","Correct in Bubu's universe. The answer is always love. 💗"]},
+ {title:"Quest 4: The Softie Test",text:"Bubu wants cuddles. Dudu's response?",choices:["A. 'I'm too cool for that'","B. Immediately becomes a teddy bear","C. Pretends to complain, then stays forever"],response:["Dudu, be serious. 😭","A rare and beautiful transformation. 🧸","CORRECT! We know the real Dudu. 🤎"]},
+ {title:"Quest 5: The Final Boss",text:"What makes this birthday quest special?",choices:["A. The graphics","B. The loot","C. Bubu made this because Dudu is loved"],response:["The graphics are pretty cute, though.","Loot is nice. Love is better.","YOU GOT IT. FINAL REWARD UNLOCKED! 💗"]}
+];
+const secretMessages=[
+ "Secret #1: Bubu would choose you in every universe, even if you were the most annoying side quest ever. 😭💗",
+ "Secret #2: White bear + brown bear = a suspiciously powerful duo. Bubu and Dudu forever. 🐻",
+ "Secret #3: You make ordinary moments feel like favorite memories. That's your superpower. 🤍",
+ "Secret #4: Psst... your final reward is a letter from your favorite person. Finish the quests! 💌"
+];
+const letter = `HAPPY BIRTHDAY, MY DUDU. 🤎
+
+First of all, congratulations on surviving another year of being you. I know that is not always an easy job. 😭
+
+I wish I could put into words just how much you mean to me. You make me laugh, you make ordinary days feel special, and somehow you can be both the person who annoys me the most and the person I want beside me the most. That's talent, baby.
+
+I love all the versions of you: the funny one, the competitive one, the quiet one, the soft one you might pretend isn't there, and the one who gets excited about the things he loves. I hope this next year brings you more reasons to smile, more wins than losses, more peace than stress, and opportunities that remind you how capable you are.
+
+And when life gets difficult, I hope you remember that you don't have to be perfect or have everything figured out to be loved. You can just be you. You can have bad days, be tired, be unsure, or need a little extra love. I want to be someone you can come to through all of it.
+
+If I could give you anything for your birthday, it would be the ability to see yourself through my eyes for a moment. You'd understand why I care about you so much, why the little things you do stay with me, and why getting to love you is something I don't take for granted.
+
+So here's to another level, another chapter, more inside jokes, more memories, more cuddles, more adventures, and hopefully a whole lot of us choosing each other through it all.
+
+And just so we're clear: you may be Player One, but Bubu is absolutely your favorite power-up. No refunds. 😌🐻
+
+I love you, Dudu. More than this little game could ever fit on a screen.
+
+Happy birthday, baby. You deserve to feel celebrated today and every day. 🤍🤎
+
+Forever your Bubu. 💗`;
+
+let current=0,completed=new Set(),answered=false,toastTimer=null,audioCtx=null,oscillators=[],musicTimer=null,secretFound=new Set();
+function startQuest(){document.getElementById('quest').scrollIntoView({behavior:'smooth'});toast('QUEST STARTED! Dudu has entered the love dungeon. 🎮');}
+function answer(index){
+ if(answered)return;
+ answered=true;
+ const q=questions[current];
+ document.getElementById('feedback').textContent=q.response[index];
+ completed.add(current);
+ document.querySelectorAll('#choices button').forEach((b,i)=>{b.disabled=true;if(i===index)b.style.borderColor='var(--green)'});
+ document.getElementById('nextQuest').classList.remove('hidden');
+ updateProgress();
+ if(current===questions.length-1){document.getElementById('nextQuest').textContent='CLAIM FINAL REWARD 🏆';}
+}
+function nextQuestion(){
+ if(current<questions.length-1){current++;renderQuestion();}
+ else{document.getElementById('finalPanel').classList.remove('hidden');document.getElementById('finalPanel').scrollIntoView({behavior:'smooth'});toast('ALL QUESTS COMPLETE! FINAL REWARD UNLOCKED! 🏆');}
+}
+function renderQuestion(){
+ answered=false;const q=questions[current];
+ document.getElementById('questTitle').textContent=q.title;
+ document.getElementById('questText').textContent=q.text;
+ document.getElementById('feedback').textContent='';
+ const choices=document.getElementById('choices');choices.innerHTML='';
+ q.choices.forEach((label,i)=>{const b=document.createElement('button');b.className='choice';b.textContent=label;b.onclick=()=>answer(i);choices.appendChild(b);});
+ const next=document.getElementById('nextQuest');next.classList.add('hidden');next.textContent='NEXT QUEST ➜';
+ updateProgress();
+}
+function updateProgress(){
+ const n=completed.size;
+ document.getElementById('progressFill').style.width=(n/questions.length*100)+'%';
+ document.getElementById('progressText').textContent='Quests completed: '+n+' / '+questions.length;
+ document.getElementById('achievementCount').textContent='Achievements: '+n+' / 5';
+}
+function toast(message){
+ const t=document.getElementById('toast');t.textContent=message;t.classList.remove('hidden');
+ clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.add('hidden'),2800);
+}
+function unlockAvengers(){
+ document.getElementById('avengersSecret').classList.remove('hidden');
+ toast('AVENGERS PROTOCOL ACTIVATED! Favorite hero achievement earned. ⚡');
+}
+function findSecret(i){
+ secretFound.add(i);const el=document.getElementById('secretNote');
+ el.textContent=secretMessages[i];el.classList.remove('hidden');
+ if(secretFound.size===4)toast('ALL FOUR SECRETS FOUND! SECRET HUNTER ACHIEVEMENT! 🏆');
+}
+function openLetter(){
+ document.getElementById('finalLetter').classList.remove('hidden');
+ document.getElementById('letterText').textContent=letter;
+ document.getElementById('finalLetter').scrollIntoView({behavior:'smooth',block:'center'});
+ hearts(12);
+}
+function celebrate(){hearts(30);toast('BUBU LOVES YOU SO SO MUCH, DUDU!! 💗🐻');}
+function hearts(n){
+ for(let i=0;i<n;i++){setTimeout(()=>{const h=document.createElement('div');h.className='heart';h.textContent=['💗','🤍','🤎','💖','✨'][Math.floor(Math.random()*5)];h.style.left=Math.random()*95+'vw';h.style.bottom='10px';h.style.fontSize=(18+Math.random()*20)+'px';document.body.appendChild(h);setTimeout(()=>h.remove(),1600);},i*45);}
+}
+document.getElementById('photoInput').addEventListener('change',function(){
+ const files=[...this.files].filter(f=>f.type.startsWith('image/')).slice(0,8);
+ if(!files.length)return;
+ const grid=document.getElementById('photoGrid');grid.innerHTML='';
+ files.forEach(file=>{const url=URL.createObjectURL(file);const box=document.createElement('div');box.className='photo';const img=document.createElement('img');img.src=url;img.alt='A memory';box.appendChild(img);grid.appendChild(box);});
+ toast('Photo previews added! Remember, these are local previews only. 📸');
+});
+/* Original generated tones only; no copyrighted music is embedded. */
+function stopMusic(){
+ if(musicTimer){clearInterval(musicTimer);musicTimer=null;}
+ oscillators.forEach(o=>{try{o.stop()}catch(e){}});
+ oscillators=[];if(audioCtx){audioCtx.close();audioCtx=null;}
+ document.body.classList.remove('epic');document.body.classList.add('romantic');
+ document.getElementById('musicStatus').textContent='Soundtrack: quiet mode 🔇';
+}
+function setMusic(mode){
+ stopMusic();
+ const AC=window.AudioContext||window.webkitAudioContext;
+ if(!AC){document.getElementById('musicStatus').textContent='Sound is not supported in this browser. The visual mode still works!';return;}
+ audioCtx=new AC();if(audioCtx.state==='suspended')audioCtx.resume();
+ document.body.classList.toggle('epic',mode==='epic');document.body.classList.toggle('romantic',mode==='romantic');
+ document.getElementById('musicStatus').textContent=mode==='epic'?'Soundtrack: EPIC MODE ⚡':'Soundtrack: ROMANTIC MODE 💗';
+ const notes=mode==='epic'?[130.81,164.81,196,261.63]:[261.63,329.63,392,329.63];
+ let i=0;
+ function playNote(){
+   if(!audioCtx)return;
+   const now=audioCtx.currentTime;
+   const osc=audioCtx.createOscillator(),gain=audioCtx.createGain();
+   osc.type=mode==='epic'?'triangle':'sine';osc.frequency.value=notes[i%notes.length];
+   gain.gain.setValueAtTime(0.0001,now);gain.gain.exponentialRampToValueAtTime(mode==='epic'?0.045:0.025,now+0.08);gain.gain.exponentialRampToValueAtTime(0.0001,now+0.7);
+   osc.connect(gain);gain.connect(audioCtx.destination);osc.start(now);osc.stop(now+0.75);i++;
+ }
+ playNote();musicTimer=setInterval(playNote,mode==='epic'?430:650);
+}
+</script>
+</body>
+</html>
