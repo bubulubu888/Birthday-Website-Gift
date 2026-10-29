@@ -268,52 +268,63 @@ function answer(btn) {
   document.getElementById('quizNext').classList.remove('hidden');
 }
   function loadPhotos(e) {
-const grid = document.getElementById(‘photoGrid’);
+  const grid = document.getElementById('photoGrid');
 
-if (!grid) return;
+  if (!grid) return;
 
-grid.innerHTML = ‘’;
+  grid.innerHTML = '';
 
-const photos = [
-‘IMG_4636.jpeg’,
-‘IMG_4368.jpeg’,
-‘IMG_3878.jpeg’,
-‘IMG_3740.jpeg’
-];
+  // Photos uploaded to the same GitHub folder as index.html
+  const photos = [
+    'IMG_4636.jpeg',
+    'IMG_4368.jpeg',
+    'IMG_3878.jpeg',
+    'IMG_3740.jpeg'
+  ];
 
-photos.forEach(filename => {
-const d = document.createElement(‘div’);
-d.className = ‘photo’;
-
-const im = document.createElement('img');
-im.src = './' + filename;
-im.alt = 'A special memory together';
-im.onerror = function() {
-  d.textContent = 'Photo could not load: ' + filename;
-};
-d.appendChild(im);
-grid.appendChild(d);
-
-});
-
-if (e && e.target && e.target.files) {
-Array.from(e.target.files).slice(0, 8).forEach(file => {
-if (!file.type.startsWith(‘image/’)) return;
-
-  const reader = new FileReader();
-  reader.onload = ev => {
+  // Display the photos stored in the GitHub repository
+  photos.forEach(function(filename) {
     const d = document.createElement('div');
     d.className = 'photo';
+
     const im = document.createElement('img');
-    im.src = ev.target.result;
-    im.alt = 'A selected memory';
+    im.src = './' + filename;
+    im.alt = 'A special memory together';
+
+    im.onerror = function() {
+      d.innerHTML = '';
+      d.textContent = 'Could not load: ' + filename;
+    };
+
     d.appendChild(im);
     grid.appendChild(d);
-  };
-  reader.readAsDataURL(file);
-});
+  });
 
-}
+  // Also allow photos to be selected directly from a phone
+  if (e && e.target && e.target.files) {
+    Array.from(e.target.files)
+      .filter(function(file) {
+        return file.type.startsWith('image/');
+      })
+      .slice(0, 8)
+      .forEach(function(file) {
+        const reader = new FileReader();
+
+        reader.onload = function(ev) {
+          const d = document.createElement('div');
+          d.className = 'photo';
+
+          const im = document.createElement('img');
+          im.src = ev.target.result;
+          im.alt = 'A selected memory';
+
+          d.appendChild(im);
+          grid.appendChild(d);
+        };
+
+        reader.readAsDataURL(file);
+      });
+  }
 }
 function hearts() {
   for(let i=0;i<18;i++) {
