@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#090b1a">
 <title>Dudu's Birthday Quest 🎮💗</title>
+
 <style>
 :root {
   --bg:#090b1a;
@@ -16,7 +17,9 @@
   --white:#fff7fd;
   --muted:#b9bfd9;
 }
+
 * { box-sizing:border-box; }
+
 body {
   margin:0;
   min-height:100vh;
@@ -24,9 +27,14 @@ body {
   font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
   background:radial-gradient(ellipse at 50% 0%,#292450,#101329 45%,var(--bg) 80%);
   line-height:1.6;
+  overflow-x:hidden;
 }
-button {
+
+button,input {
   font:inherit;
+}
+
+button {
   cursor:pointer;
   color:var(--white);
   background:#252b4b;
@@ -34,97 +42,434 @@ button {
   border-radius:10px;
   padding:12px 15px;
   box-shadow:0 4px 0 #080a15;
+  transition:transform .15s,border-color .15s;
 }
-button:active { transform:translateY(2px); box-shadow:none; }
-button:disabled { opacity:.6; }
+
+button:active {
+  transform:translateY(2px);
+  box-shadow:none;
+}
+
+button:disabled {
+  opacity:.55;
+  cursor:not-allowed;
+}
+
 .primary {
   background:linear-gradient(135deg,#b94f9c,#6659bf);
   border-color:#f3a4df;
   font-weight:bold;
 }
-.small { font-size:12px;color:var(--muted); }
-.wrap { width:min(720px,92%);margin:auto;padding:20px 0 38px; }
+
+.wrap {
+  width:min(720px,92%);
+  margin:auto;
+  padding:20px 0 38px;
+}
+
 .topbar {
-  display:flex;justify-content:space-between;gap:10px;
-  align-items:center;font-size:11px;color:var(--muted);
+  display:flex;
+  justify-content:space-between;
+  gap:10px;
+  align-items:center;
+  font-size:11px;
+  color:var(--muted);
   letter-spacing:1px;
 }
+
 .progress {
-  height:9px;background:#272c49;border:1px solid #474c72;
-  border-radius:20px;overflow:hidden;margin:12px 0 20px;
+  height:9px;
+  background:#272c49;
+  border:1px solid #474c72;
+  border-radius:20px;
+  overflow:hidden;
+  margin:12px 0 20px;
 }
+
 .fill {
-  height:100%;width:0;
+  height:100%;
+  width:0;
   background:linear-gradient(90deg,var(--pink),var(--purple),var(--mint));
   transition:width .3s;
 }
-.screen { display:none;animation:appear .3s ease; }
-.screen.active { display:block; }
+
+.screen {
+  display:none;
+  animation:appear .3s ease;
+}
+
+.screen.active {
+  display:block;
+}
+
 @keyframes appear {
   from { opacity:0;transform:translateY(8px); }
   to { opacity:1;transform:translateY(0); }
 }
+
 .box {
   background:linear-gradient(160deg,#171c36f5,#11152af5);
-  border:2px solid #42486f;border-radius:18px;
+  border:2px solid #42486f;
+  border-radius:18px;
   padding:clamp(18px,5vw,30px);
   box-shadow:0 14px 0 #060814,0 22px 45px #0005;
 }
-.title { text-align:center;border-color:#8e5796; }
-.eyebrow { color:var(--pink);font-size:11px;letter-spacing:3px; }
+
+.title {
+  text-align:center;
+  border-color:#8e5796;
+}
+
+.eyebrow {
+  color:var(--pink);
+  font-size:11px;
+  letter-spacing:3px;
+}
+
 .title h1 {
-  font-size:clamp(28px,8vw,48px);line-height:1.14;
-  margin:16px 0;text-shadow:3px 3px 0 #51366d,0 0 25px #ff79c655;
+  font-size:clamp(28px,8vw,48px);
+  line-height:1.14;
+  margin:16px 0;
+  text-shadow:3px 3px 0 #51366d,0 0 25px #ff79c655;
 }
-.title h1 span { color:var(--pink); }
-h2 { font-size:clamp(21px,5vw,30px);line-height:1.25;color:var(--pink);margin:10px 0 14px; }
+
+.title h1 span {
+  color:var(--pink);
+}
+
+h2 {
+  font-size:clamp(21px,5vw,30px);
+  line-height:1.25;
+  color:var(--pink);
+  margin:10px 0 14px;
+}
+
 h3 { color:var(--gold); }
+
 p { overflow-wrap:anywhere; }
-.bears { display:flex;justify-content:center;gap:25px;margin:22px 0 10px; }
-.bear { font-size:clamp(54px,15vw,82px);animation:bob 2.3s ease-in-out infinite; }
-.bear:nth-child(2) { animation-delay:-1.1s; }
-@keyframes bob { 50% { transform:translateY(-8px); } }
-.label { font-size:10px;color:var(--muted);letter-spacing:1px; }
+
+.bears {
+  display:flex;
+  justify-content:center;
+  gap:25px;
+  margin:22px 0 10px;
+}
+
+.bear {
+  font-size:clamp(54px,15vw,82px);
+  animation:bob 2.3s ease-in-out infinite;
+}
+
+.bear:nth-child(2) {
+  animation-delay:-1.1s;
+}
+
+@keyframes bob {
+  50% { transform:translateY(-8px); }
+}
+
+.label {
+  font-size:10px;
+  color:var(--muted);
+  letter-spacing:1px;
+}
+
 .center { text-align:center; }
-.row { display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:22px; }
-.row button { flex:1;min-width:135px; }
+
+.row {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:10px;
+  margin-top:22px;
+}
+
+.row button {
+  flex:1;
+  min-width:135px;
+}
+
 .card {
-  padding:15px;border:1px solid #474d75;border-radius:12px;
-  background:#1d2340;margin:12px 0;
+  padding:15px;
+  border:1px solid #474d75;
+  border-radius:12px;
+  background:#1d2340;
+  margin:12px 0;
 }
-.choice-list { display:grid;gap:10px;margin-top:18px; }
-.choice-list button { text-align:left; }
-.feedback { min-height:25px;color:var(--mint);font-size:13px;margin-top:12px; }
+
+.choice-list {
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+
+.choice-list button {
+  text-align:left;
+}
+
+.feedback {
+  min-height:25px;
+  color:var(--mint);
+  font-size:13px;
+  margin-top:12px;
+}
+
 .badge {
-  display:inline-block;border:1px solid #7866a6;background:#282446;
-  color:var(--gold);border-radius:7px;padding:5px 9px;
-  font-size:10px;letter-spacing:1px;
+  display:inline-block;
+  border:1px solid #7866a6;
+  background:#282446;
+  color:var(--gold);
+  border-radius:7px;
+  padding:5px 9px;
+  font-size:10px;
+  letter-spacing:1px;
 }
-.bigicon { font-size:50px;margin:12px; }
-.photo-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px; }
+
+.bigicon {
+  font-size:50px;
+  margin:12px;
+}
+
+.small {
+  font-size:12px;
+  color:var(--muted);
+}
+
+.hidden {
+  display:none!important;
+}
+
+.photo-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:10px;
+}
+
 .photo {
-  min-height:120px;display:grid;place-items:center;text-align:center;
-  border:1px dashed #737aa8;border-radius:12px;background:#191e37;
-  padding:8px;color:var(--muted);font-size:12px;overflow:hidden;
+  min-height:120px;
+  display:grid;
+  place-items:center;
+  text-align:center;
+  border:1px dashed #737aa8;
+  border-radius:12px;
+  background:#191e37;
+  padding:8px;
+  color:var(--muted);
+  font-size:12px;
+  overflow:hidden;
 }
-.photo img { width:100%;height:150px;object-fit:cover; }
+
+.photo img {
+  width:100%;
+  height:150px;
+  object-fit:cover;
+  border-radius:7px;
+  display:block;
+}
+
+input[type=file] {
+  max-width:100%;
+  margin:12px 0;
+  font-size:12px;
+  color:var(--white);
+}
+
+input[type=text] {
+  width:100%;
+  background:#090b1a;
+  color:var(--white);
+  border:2px solid #555b8a;
+  border-radius:10px;
+  padding:14px;
+  text-align:center;
+  text-transform:uppercase;
+  margin:10px 0;
+}
+
 .letter {
-  font-family:Georgia,serif;font-size:17px;line-height:1.9;
-  white-space:pre-line;background:#211c39;border-left:3px solid var(--pink);
-  padding:16px;border-radius:8px;
+  font-family:Georgia,serif;
+  font-size:17px;
+  line-height:1.9;
+  white-space:pre-line;
+  background:#211c39;
+  border-left:3px solid var(--pink);
+  padding:16px;
+  border-radius:8px;
 }
-.ending { border-color:#b76fae;text-align:center; }
-.hidden { display:none!important; }
-input[type=file] { max-width:100%;margin:12px 0;font-size:12px; }
-footer { text-align:center;color:#878eae;font-size:10px;margin-top:25px; }
-.stars { color:var(--gold);letter-spacing:5px;font-size:20px; }
+
+.ending {
+  border-color:#b76fae;
+  text-align:center;
+}
+
+.stars {
+  color:var(--gold);
+  letter-spacing:5px;
+  font-size:20px;
+}
+
+.fragrance-grid {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  margin-top:20px;
+}
+
+.fragrance {
+  min-height:130px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:8px;
+  text-align:center;
+  background:linear-gradient(145deg,#252b4b,#171b34);
+  border-color:#6d659c;
+  padding:12px 8px;
+}
+
+.fragrance .bottle {
+  font-size:34px;
+}
+
+.fragrance strong {
+  font-size:12px;
+  overflow-wrap:anywhere;
+}
+
+.fragrance.selected {
+  border-color:var(--mint);
+  background:linear-gradient(145deg,#37345e,#245046);
+  box-shadow:0 0 20px #9ff5d055;
+}
+
+#equipOverlay {
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:none;
+  place-items:center;
+  text-align:center;
+  padding:20px;
+  background:#090b1af5;
+}
+
+#equipOverlay.show {
+  display:grid;
+  animation:flash .35s ease;
+}
+
+@keyframes flash {
+  0%,100% { background:#090b1af5; }
+  50% { background:#b94f9c; }
+}
+
+.equip-content {
+  width:min(500px,100%);
+  animation:equipPop .5s ease;
+}
+
+@keyframes equipPop {
+  0% { transform:scale(.5) rotate(-5deg);opacity:0; }
+  70% { transform:scale(1.08) rotate(2deg); }
+  100% { transform:scale(1);opacity:1; }
+}
+
+.equip-title {
+  color:var(--mint);
+  font-size:clamp(20px,6vw,32px);
+  font-weight:bold;
+  text-shadow:0 0 18px #9ff5d0aa;
+}
+
+.equip-message {
+  color:var(--pink);
+  font-size:clamp(22px,7vw,38px);
+  font-weight:bold;
+  line-height:1.3;
+  margin:25px 0;
+  text-shadow:3px 3px #51366d;
+}
+
+.equip-item {
+  font-size:50px;
+  margin:18px;
+}
+
+.tap-heart {
+  display:inline-grid;
+  place-items:center;
+  width:180px;
+  height:180px;
+  max-width:65vw;
+  max-height:65vw;
+  font-size:100px;
+  background:radial-gradient(circle,#49315d,#25203f);
+  border:3px solid var(--pink);
+  border-radius:50%;
+  box-shadow:0 0 30px #ff79c655,0 6px 0 #080a15;
+  margin:18px auto;
+  touch-action:manipulation;
+}
+
+.tap-heart.popped {
+  animation:heartPop .2s ease;
+}
+
+@keyframes heartPop {
+  0% { transform:scale(1); }
+  50% { transform:scale(1.18); }
+  100% { transform:scale(1); }
+}
+
+.tap-track {
+  height:12px;
+  background:#272c49;
+  border:1px solid #555b8a;
+  border-radius:20px;
+  overflow:hidden;
+  margin:15px 0;
+}
+
+.tap-fill {
+  height:100%;
+  width:0;
+  background:linear-gradient(90deg,var(--pink),var(--purple),var(--mint));
+  transition:width .15s;
+}
+
+.heart-particle {
+  position:fixed;
+  bottom:0;
+  z-index:999;
+  pointer-events:none;
+  animation:floatHeart 2s ease-out forwards;
+}
+
+@keyframes floatHeart {
+  to {
+    transform:translateY(-85vh) rotate(35deg);
+    opacity:0;
+  }
+}
+
+footer {
+  text-align:center;
+  color:#878eae;
+  font-size:10px;
+  margin-top:25px;
+}
+
 @media(max-width:400px) {
   .box { padding:17px; }
   .topbar { font-size:9px; }
   .row button { min-width:110px; }
+  .fragrance-grid { gap:8px; }
+  .fragrance { min-height:115px; }
 }
 </style>
 </head>
+
 <body>
 <div class="wrap">
 
@@ -132,87 +477,310 @@ footer { text-align:center;color:#878eae;font-size:10px;margin-top:25px; }
   <span>✦ BUBU × DUDU ✦</span>
   <span id="levelLabel">GAME NOT STARTED</span>
 </div>
-<div class="progress"><div class="fill" id="progressFill"></div></div>
 
+<div class="progress">
+  <div class="fill" id="progressFill"></div>
+</div>
+
+<!-- LEVEL 0: START SCREEN -->
 <section class="screen active" id="s0">
   <div class="box title center">
     <div class="eyebrow">A PIXEL-HEART ADVENTURE</div>
+
     <div class="bears">
-      <div><div class="bear">🐻‍❄️</div><div class="label">BUBU · PLAYER 2</div></div>
-      <div><div class="bear">🐻</div><div class="label">DUDU · PLAYER 1</div></div>
+      <div>
+        <div class="bear">🐻‍❄️</div>
+        <div class="label">BUBU · PLAYER 2</div>
+      </div>
+      <div>
+        <div class="bear">🐻</div>
+        <div class="label">DUDU · PLAYER 1</div>
+      </div>
     </div>
+
     <h1>DUDU'S<br><span>BIRTHDAY QUEST</span></h1>
+
     <p>A very serious game about a very unserious amount of love.</p>
+
     <div class="badge">SPECIAL EDITION · PLAYER ONE: DUDU</div>
-    <div class="row"><button class="primary" onclick="go(1)">▶ START GAME</button></div>
-    <p class="small">WARNING: contains cuteness, memories, and one very loved birthday boy.</p>
+
+    <div class="row">
+      <button class="primary" onclick="go(1)">▶ START GAME</button>
+    </div>
+
+    <p class="small">
+      WARNING: contains cuteness, memories, and one very loved birthday boy.
+    </p>
   </div>
 </section>
 
+<!-- LEVEL 1: INTRODUCTION -->
 <section class="screen" id="s1">
   <div class="box center">
     <div class="badge">LEVEL 1 · THE ADVENTURE BEGINS</div>
+
     <div class="bigicon">🌙✨</div>
+
     <h2>Welcome, Player One!</h2>
-    <p>Your mission, should you choose to accept it, is to collect all the love points hidden throughout this game.</p>
-    <div class="card">🎯 <b>MAIN QUEST</b><br>Discover your birthday surprises and prove that you're Bubu's favorite human.</div>
-    <p class="small">Hint: there are no wrong answers. Except maybe stealing Bubu's snacks. 👀</p>
-    <div class="row"><button class="primary" onclick="go(2)">ACCEPT QUEST ➜</button></div>
-  </div>
-</section>
 
-<section class="screen" id="s2">
-  <div class="box">
-    <div class="badge">LEVEL 2 · LOVE TRIVIA</div>
-    <h2>💗 A tiny quiz!</h2>
-    <p>Choose the answer you think Bubu would pick. This is a very important scientific test. (Not really.)</p>
-    <h3>What is Dudu's most powerful special ability?</h3>
-    <div class="choice-list">
-      <button onclick="answer(this)">A. Being cute without even trying</button>
-      <button onclick="answer(this)">B. Making Bubu smile</button>
-      <button onclick="answer(this)">C. Somehow being both annoying and adorable</button>
-      <button onclick="answer(this)">D. ALL OF THE ABOVE</button>
+    <p>
+      Your mission, should you choose to accept it, is to collect all
+      the love points hidden throughout this game.
+    </p>
+
+    <div class="card">
+      🎯 <b>MAIN QUEST</b><br>
+      Discover your birthday surprises and prove that you're Bubu's
+      favorite human.
     </div>
-    <div class="feedback" id="quizFeedback"></div>
-    <div class="row"><button id="quizNext" class="primary hidden" onclick="go(3)">UNLOCK NEXT LEVEL ➜</button></div>
+
+    <p class="small">
+      Hint: there are no wrong answers. Except maybe stealing Bubu's snacks. 👀
+    </p>
+
+    <div class="row">
+      <button class="primary" onclick="go(2)">ACCEPT QUEST ➜</button>
+    </div>
   </div>
 </section>
 
+<!-- LEVEL 2: FRAGRANCE SELECTION -->
+<section class="screen" id="s2">
+  <div class="box center">
+    <div class="badge">LEVEL 2 · FRAGRANCE INVENTORY</div>
+
+    <div class="bigicon">🧴✨</div>
+
+    <h2>Choose Your Fragrance!</h2>
+
+    <p>
+      Equip your legendary scent before beginning the adventure.
+      Choose wisely, Player One. 😮‍💨
+    </p>
+
+    <div class="fragrance-grid">
+
+      <button class="fragrance" onclick="equipFragrance(this,'Mojave Ghost')">
+        <span class="bottle">🌫️</span>
+        <strong>MOJAVE GHOST</strong>
+        <span class="small">SELECT ITEM</span>
+      </button>
+
+      <button class="fragrance" onclick="equipFragrance(this,'Imagination')">
+        <span class="bottle">🪐</span>
+        <strong>IMAGINATION</strong>
+        <span class="small">SELECT ITEM</span>
+      </button>
+
+      <button class="fragrance" onclick="equipFragrance(this,&quot;Bal d'Afrique&quot;)">
+        <span class="bottle">🌍</span>
+        <strong>BAL D'AFRIQUE</strong>
+        <span class="small">SELECT ITEM</span>
+      </button>
+
+      <button class="fragrance" onclick="equipFragrance(this,'Vibrato')">
+        <span class="bottle">✨</span>
+        <strong>VIBRATO</strong>
+        <span class="small">SELECT ITEM</span>
+      </button>
+
+    </div>
+
+    <div class="feedback" id="fragranceFeedback" aria-live="polite"></div>
+
+    <div class="row">
+      <button id="fragranceNext" class="primary hidden" onclick="go(3)">
+        CONTINUE ADVENTURE ➜
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 3: LOVE TRIVIA -->
 <section class="screen" id="s3">
   <div class="box">
-    <div class="badge">LEVEL 3 · MEMORY UNLOCKED</div>
-    <h2>📸 Our little memory vault</h2>
-    <p>Choose photos from your phone to show here while you're playing. They're not uploaded anywhere.</p>
-    <input type="file" accept="image/*" multiple onchange="loadPhotos(event)">
+    <div class="badge">LEVEL 3 · LOVE TRIVIA</div>
+
+    <h2>💗 A Tiny Quiz!</h2>
+
+    <p>
+      Choose the answer you think Bubu would pick.
+      This is a very important scientific test. (Not really.)
+    </p>
+
+    <h3>What is Dudu's most powerful special ability?</h3>
+
+    <div class="choice-list">
+      <button onclick="answer(this,false)">
+        A. Being cute without even trying
+      </button>
+
+      <button onclick="answer(this,false)">
+        B. Making Bubu smile
+      </button>
+
+      <button onclick="answer(this,false)">
+        C. Somehow being both annoying and adorable
+      </button>
+
+      <button onclick="answer(this,true)">
+        D. ALL OF THE ABOVE
+      </button>
+    </div>
+
+    <div class="feedback" id="quizFeedback" aria-live="polite"></div>
+
+    <div class="row">
+      <button id="quizNext" class="primary hidden" onclick="go(4)">
+        UNLOCK NEXT LEVEL ➜
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 4: PHOTO MEMORY VAULT -->
+<section class="screen" id="s4">
+  <div class="box">
+    <div class="badge">LEVEL 4 · MEMORY UNLOCKED</div>
+
+    <h2>📸 Our Little Memory Vault</h2>
+
+    <p>
+      Dudu, choose your favorite memories from your phone
+      and fill our little memory vault. 💗
+    </p>
+
+    <div class="card center">
+      <div class="bigicon">🧸📷💗</div>
+
+      <h3>YOUR MEMORY COLLECTION</h3>
+
+      <p class="small">
+        Pick up to 8 pictures from your photo library.
+      </p>
+
+      <input
+        type="file"
+        id="memoryPicker"
+        accept="image/*"
+        multiple
+        onchange="loadPhotos(event)"
+      >
+    </div>
+
     <div id="photoGrid" class="photo-grid">
-      <div class="photo">💗<br>Our favorite memories</div>
+      <div class="photo">💗<br>Choose your first memory!</div>
       <div class="photo">🧸<br>Bubu + Dudu</div>
     </div>
-    <div class="card">🏆 <b>ACHIEVEMENT UNLOCKED</b><br>Professional Memory Collector</div>
-    <div class="row"><button class="primary" onclick="go(4)">NEXT LEVEL ➜</button></div>
-  </div>
-</section>
 
-<section class="screen" id="s4">
-  <div class="box center">
-    <div class="badge">LEVEL 4 · MYSTERY ITEM</div>
-    <div class="bigicon">🎁</div>
-    <h2>A little surprise for you...</h2>
-    <p>Every hero deserves a legendary item. Bubu has a special surprise for Dudu, selected with lots of love.</p>
+    <div class="feedback" id="photoFeedback" aria-live="polite"></div>
+
     <div class="card">
-      <div class="bigicon">🌹</div>
-      <h3>THE FRAGRANCE QUEST</h3>
-      <p>A scent to remind you that even when we're apart, there's someone out there thinking about you and loving you lots.</p>
-      <p class="small">ITEM RARITY: ✦✦✦✦✦ LEGENDARY</p>
+      🏆 <b>ACHIEVEMENT UNLOCKED</b><br>
+      Professional Memory Collector
     </div>
-    <div class="row"><button class="primary" onclick="go(5)">CLAIM REWARD ➜</button></div>
+
+    <div class="row">
+      <button class="primary" onclick="go(5)">NEXT LEVEL ➜</button>
+    </div>
   </div>
 </section>
 
+<!-- LEVEL 5: CHOCOFLAN PUZZLE -->
 <section class="screen" id="s5">
+  <div class="box center">
+    <div class="badge">LEVEL 5 · THE SECRET PUZZLE</div>
+
+    <div class="bigicon">🧩🍮</div>
+
+    <h2>Unlock the Secret Word!</h2>
+
+    <p>
+      A secret word is guarding the next level.
+      Solve the puzzle to continue your quest!
+    </p>
+
+    <div class="card">
+      <div class="label">YOUR HINT</div>
+      <h3>OUR PET KID 🐾</h3>
+      <p class="small">What word are you looking for?</p>
+    </div>
+
+    <form onsubmit="checkPuzzle(event)">
+      <input
+        type="text"
+        id="puzzleAnswer"
+        placeholder="TYPE YOUR ANSWER..."
+        autocomplete="off"
+        autocapitalize="characters"
+        aria-label="Secret puzzle answer"
+      >
+
+      <button class="primary" type="submit">
+        SUBMIT ANSWER ➜
+      </button>
+    </form>
+
+    <div class="feedback" id="puzzleFeedback" aria-live="polite"></div>
+
+    <div class="row">
+      <button id="puzzleNext" class="primary hidden" onclick="go(6)">
+        PUZZLE SOLVED! ➜
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 6: 30 HEART TAPS -->
+<section class="screen" id="s6">
+  <div class="box center">
+    <div class="badge">LEVEL 6 · THE LOVE CHALLENGE</div>
+
+    <div class="bigicon">💗✨</div>
+
+    <h2>Tap 30 Times!</h2>
+
+    <p>
+      Think you have enough love for Bubu?
+      Prove it by tapping the heart 30 times!
+    </p>
+
+    <div class="card">
+      <div class="label">HEART TAPS</div>
+
+      <h2 id="tapCount">0 / 30</h2>
+
+      <div class="tap-track">
+        <div class="tap-fill" id="tapFill"></div>
+      </div>
+
+      <button
+        id="tapHeart"
+        class="tap-heart"
+        onclick="tapLove()"
+        aria-label="Tap the heart"
+      >💗</button>
+
+      <p class="small" id="tapHint">
+        Every tap is another love point! 💕
+      </p>
+    </div>
+
+    <div class="row">
+      <button id="noteNext" class="primary hidden" onclick="go(7)">
+        💌 UNLOCK BUBU'S NOTE
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- LEVEL 7: BUBU'S LETTER -->
+<section class="screen" id="s7">
   <div class="box">
-    <div class="badge">FINAL LEVEL · MESSAGE FROM BUBU</div>
-    <h2>💌 A letter just for you</h2>
+    <div class="badge">LEVEL 7 · MESSAGE FROM BUBU</div>
+
+    <h2>💌 A Letter Just for You</h2>
+
     <div class="letter">Happy birthday dudu! 🩷
 
 I’m so grateful you were born and alive at the same time as me. Being able to experience you is such a blessing in its own. You teach me so much and not only that but you love me in a way that is so rare.
@@ -220,20 +788,50 @@ I’m so grateful you were born and alive at the same time as me. Being able to 
 You’re my baby, my soul mate, my dudu. You’re forever young my love. You are loved, you are intelligent, you are handsome, you are healthy, and you are wealthy.
 
 I love you with my whole heart. 🩷⭐️</div>
-    <div class="row"><button class="primary" onclick="go(6)">🎂 FINISH THE GAME</button></div>
+
+    <div class="card center">
+      <div class="bigicon">💗🐻💗</div>
+      <p>Made with all my love, just for you.</p>
+    </div>
+
+    <div class="row">
+      <button class="primary" onclick="go(8)">
+        🎂 FINISH THE GAME
+      </button>
+    </div>
   </div>
 </section>
 
-<section class="screen" id="s6">
+<!-- LEVEL 8: BIRTHDAY FINALE -->
+<section class="screen" id="s8">
   <div class="box ending">
     <div class="stars">★ ★ ★ ★ ★</div>
+
     <div class="bigicon">🎉🎂💗</div>
+
     <div class="badge">QUEST COMPLETE</div>
+
     <h2>HAPPY BIRTHDAY, DUDU!</h2>
+
     <p>YOU DID IT, PLAYER ONE!</p>
-    <div class="card"><h3>🏆 FINAL ACHIEVEMENT</h3><p>UNLOCKED: BUBU'S HEART — FOREVER EDITION</p></div>
-    <div class="bears"><div class="bear">🐻‍❄️</div><div class="bear">🐻</div></div>
+
+    <div class="card">
+      <h3>🏆 FINAL ACHIEVEMENT</h3>
+      <p>UNLOCKED: BUBU'S HEART — FOREVER EDITION</p>
+    </div>
+
+    <div class="card">
+      <div class="label">YOUR EQUIPPED FRAGRANCE</div>
+      <h3 id="finalFragrance">LEGENDARY SCENT</h3>
+    </div>
+
+    <div class="bears">
+      <div class="bear">🐻‍❄️</div>
+      <div class="bear">🐻</div>
+    </div>
+
     <p>Thanks for playing. Your reward is a whole lot of love. 💗</p>
+
     <div class="row">
       <button onclick="go(0)">↻ PLAY AGAIN</button>
       <button class="primary" onclick="hearts()">💗 MORE LOVE</button>
@@ -241,107 +839,268 @@ I love you with my whole heart. 🩷⭐️</div>
   </div>
 </section>
 
-<footer>MADE WITH ♡ BY BUBU · FOR DUDU<br><span>ENDLESS LOVE MODE: ENABLED</span></footer>
+<footer>
+  MADE WITH ♡ BY BUBU · FOR DUDU<br>
+  <span>ENDLESS LOVE MODE: ENABLED</span>
+</footer>
+
+</div>
+
+<!-- FRAGRANCE EQUIP ANIMATION -->
+<div id="equipOverlay" role="dialog" aria-modal="true" aria-label="Fragrance equipped">
+  <div class="equip-content">
+    <div class="badge">LEGENDARY ITEM ACQUIRED</div>
+
+    <div class="equip-item">🧴✨</div>
+
+    <div class="equip-title">FRAGRANCE EQUIPPED!</div>
+
+    <h2 id="equippedName"></h2>
+
+    <div class="equip-message">
+      THAT'S THAT GOOD SHI<br>
+      NOT THAT BULLSHI 🔥
+    </div>
+
+    <button class="primary" onclick="closeEquip()">
+      LET'S GOOOO ➜
+    </button>
+  </div>
 </div>
 
 <script>
-let current=0;
-const total=6;
+let current = 0;
+const total = 8;
+
+let selectedFragrance = '';
+let quizSolved = false;
+let puzzleSolved = false;
+let loveTaps = 0;
+let overlayTimer = null;
 
 function go(n) {
-  document.getElementById('s'+current).classList.remove('active');
-  current=n;
-  document.getElementById('s'+current).classList.add('active');
+  const oldScreen = document.getElementById('s' + current);
+  const nextScreen = document.getElementById('s' + n);
+
+  if (!nextScreen) return;
+
+  if (oldScreen) oldScreen.classList.remove('active');
+
+  current = n;
+  nextScreen.classList.add('active');
+
   document.getElementById('levelLabel').textContent =
-    n===0 ? 'GAME NOT STARTED' :
-    n===6 ? 'QUEST COMPLETE' : 'LEVEL '+n+' / 6';
-  document.getElementById('progressFill').style.width=(n/total*100)+'%';
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(n===6) hearts();
+    n === 0 ? 'GAME NOT STARTED' :
+    n === 8 ? 'QUEST COMPLETE' :
+    'LEVEL ' + n + ' / ' + total;
+
+  document.getElementById('progressFill').style.width =
+    (n / total * 100) + '%';
+
+  window.scrollTo({top:0, behavior:'smooth'});
+
+  if (n === 8) {
+    const finalName = document.getElementById('finalFragrance');
+    finalName.textContent = selectedFragrance || 'LEGENDARY SCENT';
+    hearts();
+  }
 }
 
-function answer(btn) {
-  document.querySelectorAll('#s2 .choice-list button').forEach(b=>b.disabled=true);
-  btn.style.borderColor='var(--mint)';
+function equipFragrance(button, name) {
+  selectedFragrance = name;
+
+  document.querySelectorAll('.fragrance').forEach(function(item) {
+    item.classList.remove('selected');
+  });
+
+  button.classList.add('selected');
+
+  document.getElementById('fragranceFeedback').textContent =
+    name.toUpperCase() + ' SELECTED!';
+
+  document.getElementById('equippedName').textContent = name;
+
+  document.getElementById('fragranceNext').classList.remove('hidden');
+
+  const overlay = document.getElementById('equipOverlay');
+
+  overlay.classList.remove('show');
+
+  // Restart the animation if another fragrance is selected.
+  void overlay.offsetWidth;
+  overlay.classList.add('show');
+
+  clearTimeout(overlayTimer);
+
+  overlayTimer = setTimeout(function() {
+    overlay.classList.remove('show');
+  }, 4500);
+}
+
+function closeEquip() {
+  clearTimeout(overlayTimer);
+  document.getElementById('equipOverlay').classList.remove('show');
+}
+
+function answer(button, isCorrect) {
+  if (quizSolved) return;
+
+  const buttons = document.querySelectorAll('#s3 .choice-list button');
+
+  if (!isCorrect) {
+    button.style.borderColor = '#ff8c9c';
+
+    document.getElementById('quizFeedback').textContent =
+      'NOT QUITE! THINK BIGGER, DUDU. 👀💗';
+
+    return;
+  }
+
+  quizSolved = true;
+
+  buttons.forEach(function(item) {
+    item.disabled = true;
+  });
+
+  button.style.borderColor = 'var(--mint)';
+
   document.getElementById('quizFeedback').textContent =
-    'CORRECT ANSWER: ALL OF THE ABOVE! 💗 +100 LOVE POINTS';
+    'CORRECT! ALL OF THE ABOVE! 💗 +100 LOVE POINTS';
+
   document.getElementById('quizNext').classList.remove('hidden');
 }
-  function loadPhotos(e) {
-  const grid = document.getElementById('photoGrid');
 
-  if (!grid) return;
+function loadPhotos(e) {
+  const grid = document.getElementById('photoGrid');
+  const feedback = document.getElementById('photoFeedback');
+
+  if (!grid || !e.target.files) return;
+
+  const files = Array.from(e.target.files)
+    .filter(function(file) {
+      return file.type.startsWith('image/');
+    })
+    .slice(0, 8);
 
   grid.innerHTML = '';
 
-  // Photos uploaded to the same GitHub folder as index.html
-  const photos = [
-    'IMG_4636.jpeg',
-    'IMG_4368.jpeg',
-    'IMG_3878.jpeg',
-    'IMG_3740.jpeg'
-  ];
+  if (files.length === 0) {
+    grid.innerHTML =
+      '<div class="photo">💗<br>Choose your first memory!</div>' +
+      '<div class="photo">🧸<br>Bubu + Dudu</div>';
 
-  // Display the photos stored in the GitHub repository
-  photos.forEach(function(filename) {
-    const d = document.createElement('div');
-    d.className = 'photo';
+    feedback.textContent = 'Choose some pictures to fill your vault!';
 
-    const im = document.createElement('img');
-    im.src = './' + filename;
-    im.alt = 'A special memory together';
+    return;
+  }
 
-    im.onerror = function() {
-      d.innerHTML = '';
-      d.textContent = 'Could not load: ' + filename;
+  feedback.textContent = files.length === 8
+    ? '8 MEMORIES SELECTED! YOUR VAULT IS FULL! 💗'
+    : files.length + ' MEMORY/MEMORIES ADDED! 💗';
+
+  files.forEach(function(file) {
+    const card = document.createElement('div');
+    card.className = 'photo';
+
+    const img = document.createElement('img');
+    img.alt = 'A special memory together';
+
+    card.appendChild(img);
+    grid.appendChild(card);
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      img.src = event.target.result;
     };
 
-    d.appendChild(im);
-    grid.appendChild(d);
+    reader.onerror = function() {
+      card.textContent = 'This picture could not be displayed.';
+    };
+
+    reader.readAsDataURL(file);
   });
+}
 
-  // Also allow photos to be selected directly from a phone
-  if (e && e.target && e.target.files) {
-    Array.from(e.target.files)
-      .filter(function(file) {
-        return file.type.startsWith('image/');
-      })
-      .slice(0, 8)
-      .forEach(function(file) {
-        const reader = new FileReader();
+function checkPuzzle(event) {
+  event.preventDefault();
 
-        reader.onload = function(ev) {
-          const d = document.createElement('div');
-          d.className = 'photo';
+  if (puzzleSolved) return;
 
-          const im = document.createElement('img');
-          im.src = ev.target.result;
-          im.alt = 'A selected memory';
+  const input = document.getElementById('puzzleAnswer');
+  const answer = input.value.trim().toLowerCase().replace(/\s+/g, '');
 
-          d.appendChild(im);
-          grid.appendChild(d);
-        };
+  if (answer === 'chocoflan') {
+    puzzleSolved = true;
 
-        reader.readAsDataURL(file);
-      });
+    input.disabled = true;
+
+    document.getElementById('puzzleFeedback').textContent =
+      'CORRECT!! CHOCOFLAN UNLOCKED! 🍮 +100 LOVE POINTS';
+
+    document.getElementById('puzzleNext').classList.remove('hidden');
+  } else {
+    document.getElementById('puzzleFeedback').textContent =
+      'NOT QUITE! HINT: OUR PET KID 🐾 TRY AGAIN!';
   }
 }
+
+function tapLove() {
+  if (loveTaps >= 30) return;
+
+  loveTaps++;
+
+  document.getElementById('tapCount').textContent =
+    loveTaps + ' / 30';
+
+  document.getElementById('tapFill').style.width =
+    (loveTaps / 30 * 100) + '%';
+
+  const heart = document.getElementById('tapHeart');
+
+  heart.classList.remove('popped');
+  void heart.offsetWidth;
+  heart.classList.add('popped');
+
+  if (loveTaps < 30) {
+    document.getElementById('tapHint').textContent =
+      loveTaps + ' love points collected! KEEP GOING! 💗';
+  }
+
+  if (loveTaps === 30) {
+    heart.textContent = '💖';
+    heart.disabled = true;
+
+    document.getElementById('tapHint').textContent =
+      '30/30! YOU UNLOCKED BUBU’S NOTE! I LOVE YOU! 🥹💗';
+
+    document.getElementById('noteNext').classList.remove('hidden');
+
+    hearts();
+  }
+}
+
 function hearts() {
-  for(let i=0;i<18;i++) {
-    const h=document.createElement('div');
-    h.textContent=['💗','💖','💕','✨'][Math.floor(Math.random()*4)];
-    h.style.cssText=
-      'position:fixed;left:'+(Math.random()*100)+
-      '%;bottom:0;font-size:'+(18+Math.random()*22)+
-      'px;z-index:99;pointer-events:none;transition:transform 2s ease,opacity 2s ease';
+  for (let i = 0; i < 18; i++) {
+    const h = document.createElement('div');
+
+    h.className = 'heart-particle';
+    h.textContent = ['💗','💖','💕','✨'][Math.floor(Math.random() * 4)];
+
+    h.style.left = (Math.random() * 100) + '%';
+
+    h.style.fontSize = (18 + Math.random() * 22) + 'px';
+
+    h.style.animationDuration = (1.5 + Math.random() * 1.5) + 's';
+
     document.body.appendChild(h);
-    requestAnimationFrame(()=>{
-      h.style.transform='translateY(-'+(180+Math.random()*400)+'px) rotate(30deg)';
-      h.style.opacity='0';
-    });
-    setTimeout(()=>h.remove(),2200);
+
+    setTimeout(function() {
+      h.remove();
+    }, 3500);
   }
 }
 </script>
+
 </body>
 </html>
